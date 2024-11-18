@@ -44,7 +44,7 @@ const Type = ({
   }, [type]);
 
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <div className="flex items-center">
         <div
           style={{

@@ -21,7 +21,7 @@ const Users = ({
   const router = useRouter();
 
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <h1 className={dashboardStyles.title}>Users</h1>
       <button
         className="button glass flex items-center my-4"

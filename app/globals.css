@@ -22,6 +22,7 @@
 body {
   color: var(--foreground);
   background-color: var(--background);
+  overflow-x: hidden;
 }
 
 h1 {
@@ -116,4 +117,11 @@ hr {
 
 ::selection {
   background-color: var(--foreground-light);
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-y: hidden;
+  }
 }

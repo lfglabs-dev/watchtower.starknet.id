@@ -4,7 +4,7 @@ import DashboardMenu from "../components/dashboard/menu";
 import { useSearchParams } from "next/navigation";
 import styles from "../styles/dashboard.module.css";
 import Services from "../components/dashboard/services";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import request from "../utils/request";
 import { useCookies } from "react-cookie";
 import Service from "../components/dashboard/service";
@@ -21,7 +21,7 @@ import loadDbs from "../components/dashboard/db/loadDbs";
 const Dashboard = () => {
   const cookies = useCookies();
   const params = useSearchParams();
-  const page = params.get("page") || "logs";
+  const page = useMemo(() => params.get("page") || "logs", [params]);
   const [services, setServices] = useState<Array<any>>([]);
   const [users, setUsers] = useState<Array<User>>([]);
   const [permissions, setPermissions] = useState<Array<Permission>>([]);
@@ -54,6 +54,14 @@ const Dashboard = () => {
     });
     loadDbs(token, setDatabases);
   }, [token]);
+
+  useEffect(() => {
+    // Scroll page to top
+    window.scrollTo(0, 0);
+    const dashboardContainer = document.getElementById("dashboardContainer");
+    if (dashboardContainer) dashboardContainer.scrollTo(0, 0);
+    console.log("Page changed to", page);
+  }, [page]);
 
   useEffect(() => {
     // Check if any db is connecting

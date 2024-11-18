@@ -41,3 +41,26 @@
 .link.logout {
   margin-left: auto;
 }
+
+@media (max-width: 768px) {
+  .container {
+    overflow-x: auto;
+    background-color: black;
+    justify-content: flex-start;
+    margin: 0;
+    left: 0;
+    right: 0;
+    top: -100px;
+    padding: 100px 0.5rem 0;
+    height: calc(100px + 3em);
+  }
+
+  .link {
+    margin: 0 0.5em;
+    white-space: nowrap;
+  }
+  .link.logout {
+    color: rgb(154, 109, 109);
+    margin-left: 1rem;
+  }
+}

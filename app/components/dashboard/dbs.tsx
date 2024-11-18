@@ -24,7 +24,7 @@ const Databases = ({
   };
 
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <h1 className={dashboardStyles.title}>Databases</h1>
       {permissions.find((p) => p === "administrator") && (
         <button

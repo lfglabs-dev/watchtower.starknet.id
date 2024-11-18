@@ -17,11 +17,10 @@ const Settings = ({
   permissions: Array<Permission>;
 }) => {
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <h1 className={dashboardStyles.title}>Settings</h1>
-      <hr className="hr-soft"></hr>
       <main className={styles.container}>
-        <h2 className="text-outline">Local</h2>
+        <h2 className="text-outline my-4">Local</h2>
         <section className={styles.section}>
           <button
             className={[styles.element, "button glass flex items-center"].join(

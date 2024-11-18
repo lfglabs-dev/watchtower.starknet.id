@@ -23,6 +23,7 @@ const TextInput = ({
       value={onChange && value}
       defaultValue={!onChange ? value : undefined}
       onChange={onChange}
+      autoCapitalize="none"
       id={id}
     />
   );

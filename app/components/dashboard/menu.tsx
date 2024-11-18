@@ -1,6 +1,7 @@
 import styles from "@/app/styles/components/dashboard/menu.module.css";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const DashboardMenu = ({
   permissions,
@@ -32,6 +33,7 @@ const DashboardMenu = ({
         />
       ),
       administrator: false,
+      alias: ["service"],
     },
     dbs: {
       icon: (
@@ -42,6 +44,7 @@ const DashboardMenu = ({
         />
       ),
       administrator: true,
+      alias: ["db"],
     },
     types: {
       icon: (
@@ -52,6 +55,7 @@ const DashboardMenu = ({
         />
       ),
       administrator: true,
+      alias: ["type"],
     },
     users: {
       icon: (
@@ -62,6 +66,7 @@ const DashboardMenu = ({
         />
       ),
       administrator: true,
+      alias: ["user"],
     },
     settings: {
       icon: (
@@ -79,14 +84,19 @@ const DashboardMenu = ({
     <div className={styles.container}>
       {Object.keys(pages).map((key, index) =>
         !(pages as any)[key].administrator ||
-        permissions.includes("administrator") ? (
-          <p
+        permissions.includes("administrator") ||
+        true ? (
+          <Link
             key={`page_${index}`}
-            className={[styles.link, page === key && styles.active].join(" ")}
-            onClick={() => router.push(`/dashboard?page=${key}`)}
+            className={[
+              styles.link,
+              (page === key || (pages as any)[key]?.alias?.includes(page)) &&
+                styles.active,
+            ].join(" ")}
+            href={`/dashboard?page=${key}`}
           >
             {key}
-          </p>
+          </Link>
         ) : null
       )}
       <p

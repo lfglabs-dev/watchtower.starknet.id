@@ -59,7 +59,7 @@ const Database = ({
   }, [db]);
 
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <div className="flex items-center">
         <h1 className={dashboardStyles.title}>Database: {db?.custom_name}</h1>
         <p

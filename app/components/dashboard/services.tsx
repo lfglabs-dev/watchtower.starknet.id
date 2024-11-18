@@ -1,4 +1,3 @@
-import styles from "@/app/styles/components/dashboard/home.module.css";
 import { useRouter } from "next/navigation";
 import Icon from "../icons/icon";
 import Plus from "../icons/paths/plus";
@@ -25,7 +24,7 @@ const Services = ({
   };
 
   return (
-    <div>
+    <div className={dashboardStyles.pageContent}>
       <h1 className={dashboardStyles.title}>Services</h1>
       <div className="my-4 flex">
         {permissions.find((p) => p === "administrator") && (

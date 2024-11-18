@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import request from "@/app/utils/request";
 import dashboardStyles from "@/app/styles/dashboard.module.css";
 import DeleteUserButton from "./user/deleteUserButton";
-import styles from "@/app/styles/components/dashboard/user.module.css";
 
 const User = ({
   users,
@@ -56,7 +55,7 @@ const User = ({
   }, [user, permissions, loaded]);
 
   return (
-    <div className={styles.container}>
+    <div className={dashboardStyles.pageContent}>
       <div className="flex items-center">
         {user ? (
           <div className="mr-3">
