@@ -7,6 +7,7 @@ type Database = {
   last_save?: string;
   message?: string;
   custom_name?: string;
+  authentication_database: string;
 };
 
 type DbSave = {

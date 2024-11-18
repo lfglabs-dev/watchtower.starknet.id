@@ -40,6 +40,7 @@ const Database = ({
         name: db.name,
         connection_string: db.connection_string,
         custom_name: db.custom_name,
+        authentication_database: db.authentication_database,
       });
     }
   }, [db]);
@@ -185,6 +186,27 @@ const Database = ({
                       return {
                         ...t,
                         custom_name: e.target.value,
+                      };
+                    }
+                    return t;
+                  })
+                );
+            }}
+          />
+        </div>
+        <div className="flex items-center my-2">
+          <label className="mr-3">Authentication database: </label>
+          <TextInput
+            placeholder="Authentication database"
+            value={db?.authentication_database || ""}
+            onChange={(e) => {
+              if (db)
+                setDatabases(
+                  databases.map((t) => {
+                    if (t._id === db._id) {
+                      return {
+                        ...t,
+                        authentication_database: e.target.value,
                       };
                     }
                     return t;
