@@ -288,7 +288,7 @@ const Logs = ({
               <p className={styles.noLogs}>No logs found</p>
             )}{" "}
             {logs
-              .toSorted(
+              .sort(
                 // First order by timestamp, then by id
                 (a, b) => {
                   if (a.timestamp === b.timestamp)
