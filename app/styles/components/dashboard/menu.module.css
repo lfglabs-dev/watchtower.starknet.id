@@ -3,6 +3,7 @@
   position: fixed;
   align-items: center;
   justify-content: center;
+  background-color: black;
   top: 0;
   left: 1em;
   right: 1em;
@@ -45,7 +46,6 @@
 @media (max-width: 768px) {
   .container {
     overflow-x: auto;
-    background-color: black;
     justify-content: flex-start;
     margin: 0;
     left: 0;
