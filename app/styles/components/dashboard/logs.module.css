@@ -1,6 +1,5 @@
 .mainContainer {
-  min-width: 40vw;
-  max-width: 90vw;
+  width: max(85vw, calc(100vw - 250px));
 }
 
 .container {
