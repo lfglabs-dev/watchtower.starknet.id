@@ -15,7 +15,11 @@ const request = async (
   try {
     const data = await res.json();
     if (data.status === "error") {
-      if (data.error_code === "invalid_token") window.location.href = "/";
+      if (
+        data.error_code === "invalid_token" &&
+        window.location.pathname !== "/"
+      )
+        window.location.href = "/";
     }
     return data;
   } catch (err) {
