@@ -2,6 +2,7 @@ import styles from "@/app/styles/components/dashboard/menu.module.css";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import usePermission from "@/app/hooks/usePermissions";
 
 const DashboardMenu = ({
   permissions,
@@ -12,6 +13,7 @@ const DashboardMenu = ({
 }) => {
   const router = useRouter();
   const cookies = useCookies();
+  const { isAdministrator } = usePermission();
 
   const pages = {
     logs: {
@@ -83,9 +85,7 @@ const DashboardMenu = ({
   return (
     <div className={styles.container}>
       {Object.keys(pages).map((key, index) =>
-        !(pages as any)[key].administrator ||
-        permissions.includes("administrator") ||
-        true ? (
+        !(pages as any)[key].administrator || isAdministrator ? (
           <Link
             key={`page_${index}`}
             className={[

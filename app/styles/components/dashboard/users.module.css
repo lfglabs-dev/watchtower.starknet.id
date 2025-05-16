@@ -37,13 +37,16 @@
 }
 
 .permission {
-  background-color: var(--foreground-glass-light);
-  border: 1px solid var(--foreground-light);
+  background-color: var(--background);
+  border: 1px solid var(--inactive);
   padding: 0 5px;
   border-radius: 5px;
+  width: fit-content;
+  opacity: 0.5;
 }
 
 .permission.administrator {
   background-color: var(--foreground-glass-light-2);
   border: 1px solid var(--foreground-light-2);
+  opacity: 1;
 }
