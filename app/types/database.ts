@@ -8,6 +8,7 @@ type Database = {
   message?: string;
   custom_name?: string;
   authentication_database: string;
+  hourly_save?: boolean;
 };
 
 type DbSave = {

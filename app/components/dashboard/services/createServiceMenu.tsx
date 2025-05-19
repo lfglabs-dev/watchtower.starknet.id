@@ -36,6 +36,7 @@ const CreateServiceMenu = ({
               {
                 _id: res._id,
                 app_name: app_name,
+                whitelist: [],
               },
             ])
         );

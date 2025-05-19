@@ -11,12 +11,10 @@ const Users = ({
   users,
   setUsers,
   setMenu,
-  permissions,
 }: {
   users: Array<User>;
   setUsers: (services: Array<User>) => void;
   setMenu: SetMenu;
-  permissions: Array<Permission>;
 }) => {
   const router = useRouter();
 

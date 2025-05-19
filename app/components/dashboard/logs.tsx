@@ -212,7 +212,15 @@ const Logs = ({
     l();
     const interval = setInterval(l, 1000);
     return () => clearInterval(interval);
-  }, [loaded, refresh, targetServiceIds, targetTypes, pageId, pageAmount]);
+  }, [
+    loaded,
+    refresh,
+    targetServiceIds,
+    targetTypes,
+    pageId,
+    pageAmount,
+    services,
+  ]);
 
   const getType = (typeName: string) =>
     types.find((type) => type.name === typeName);

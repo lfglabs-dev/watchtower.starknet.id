@@ -8,14 +8,10 @@ import Hashtag from "../icons/paths/hashtag";
 import DiscordWebhookMenu from "./settings/discordWebhookMenu";
 import dashboardStyles from "@/app/styles/dashboard.module.css";
 import TelegramConnectMenu from "./settings/telegramConnectMenu";
+import usePermission from "@/app/hooks/usePermissions";
 
-const Settings = ({
-  setMenu,
-  permissions,
-}: {
-  setMenu: SetMenu;
-  permissions: Array<Permission>;
-}) => {
+const Settings = ({ setMenu }: { setMenu: SetMenu }) => {
+  const { isAdministrator } = usePermission();
   return (
     <div className={dashboardStyles.pageContent}>
       <h1 className={dashboardStyles.title}>Settings</h1>
@@ -33,19 +29,22 @@ const Settings = ({
             </Icon>
             <p className="ml-1">Change password</p>
           </button>
-          <button
-            className={[styles.element, "button glass flex items-center"].join(
-              " "
-            )}
-            onClick={() => alert("Not implemented yet")}
-          >
-            <Icon>
-              <Mail />
-            </Icon>
-            <p className="ml-1">Connect email</p>
-          </button>
+          {isAdministrator && (
+            <button
+              className={[
+                styles.element,
+                "button glass flex items-center",
+              ].join(" ")}
+              onClick={() => alert("Not implemented yet")}
+            >
+              <Icon>
+                <Mail />
+              </Icon>
+              <p className="ml-1">Connect email</p>
+            </button>
+          )}
         </section>
-        {permissions.includes("administrator") && (
+        {isAdministrator && (
           <section className={styles.section}>
             <h2 className="text-outline">Global</h2>
             <button

@@ -17,6 +17,7 @@ import Logs from "../components/dashboard/logs";
 import Databases from "../components/dashboard/dbs";
 import Database from "../components/dashboard/db";
 import loadDbs from "../components/dashboard/db/loadDbs";
+import usePermission from "../hooks/usePermissions";
 
 const Dashboard = () => {
   const cookies = useCookies();
@@ -24,10 +25,10 @@ const Dashboard = () => {
   const page = useMemo(() => params.get("page") || "logs", [params]);
   const [services, setServices] = useState<Array<any>>([]);
   const [users, setUsers] = useState<Array<User>>([]);
-  const [permissions, setPermissions] = useState<Array<Permission>>([]);
   const [types, setTypes] = useState<Array<Type>>([]);
   const [databases, setDatabases] = useState<Array<Database>>([]);
   const [menu, setMenu] = useState<Menu>(null);
+  const { permissions } = usePermission();
 
   const token = cookies[0].token;
 
@@ -40,11 +41,6 @@ const Dashboard = () => {
     request("/get_users", { token: token }).then((res) => {
       if (res.status === "success") {
         setUsers(res.users);
-      }
-    });
-    request("/get_permissions", { token: token }).then((res) => {
-      if (res.status === "success") {
-        setPermissions(res.permissions);
       }
     });
     request("/get_types", { token: token }).then((res) => {
@@ -60,7 +56,6 @@ const Dashboard = () => {
     window.scrollTo(0, 0);
     const dashboardContainer = document.getElementById("dashboardContainer");
     if (dashboardContainer) dashboardContainer.scrollTo(0, 0);
-    console.log("Page changed to", page);
   }, [page]);
 
   useEffect(() => {
@@ -92,8 +87,8 @@ const Dashboard = () => {
           <Service
             services={services}
             setMenu={setMenu}
-            permissions={permissions}
             setServices={setServices}
+            users={users}
           />
         ) : null}
         {page === "dbs" ? (
@@ -114,9 +109,7 @@ const Dashboard = () => {
         {page === "logs" ? (
           <Logs services={services} types={types} setMenu={setMenu} />
         ) : null}
-        {page === "settings" ? (
-          <Settings permissions={permissions} setMenu={setMenu} />
-        ) : null}
+        {page === "settings" ? <Settings setMenu={setMenu} /> : null}
         {page === "types" ? (
           <Types setMenu={setMenu} types={types} setTypes={setTypes} />
         ) : null}
@@ -124,12 +117,7 @@ const Dashboard = () => {
           <Type types={types} setTypes={setTypes} setMenu={setMenu} />
         ) : null}
         {page === "users" ? (
-          <Users
-            users={users}
-            setMenu={setMenu}
-            setUsers={setUsers}
-            permissions={permissions}
-          />
+          <Users users={users} setMenu={setMenu} setUsers={setUsers} />
         ) : null}
         {page === "user" ? (
           <User users={users} setUsers={setUsers} setMenu={setMenu} />

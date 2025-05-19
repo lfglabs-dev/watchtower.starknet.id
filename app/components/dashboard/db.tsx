@@ -12,6 +12,7 @@ import Popup from "../UI/popup";
 import SaveNow from "./db/saveNow";
 import RelativeDate from "../UI/relativeDate";
 import Saves from "./db/saves";
+import Switch from "../UI/switch";
 
 const Database = ({
   databases,
@@ -41,6 +42,7 @@ const Database = ({
         connection_string: db.connection_string,
         custom_name: db.custom_name,
         authentication_database: db.authentication_database,
+        hourly_save: db.hourly_save,
       });
     }
   }, [db]);
@@ -207,6 +209,26 @@ const Database = ({
                       return {
                         ...t,
                         authentication_database: e.target.value,
+                      };
+                    }
+                    return t;
+                  })
+                );
+            }}
+          />
+        </div>
+        <div className="flex items-center my-2">
+          <label className="mr-3">Hourly saves: </label>
+          <Switch
+            checked={db?.hourly_save || false}
+            setChecked={(checked) => {
+              if (db)
+                setDatabases(
+                  databases.map((t) => {
+                    if (t._id === db._id) {
+                      return {
+                        ...t,
+                        hourly_save: checked,
                       };
                     }
                     return t;
