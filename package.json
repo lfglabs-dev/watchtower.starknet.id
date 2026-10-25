@@ -17,7 +17,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "fastest-levenshtein": "^1.0.16",
-    "next": "13.4.4",
+    "next": "15.5.28",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-cookie": "^4.1.1",
